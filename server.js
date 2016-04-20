@@ -13,7 +13,7 @@ var express = require('express')
   , reports = require('./routes/reports')
   , locations = require('./routes/locations')
   , fauxAuth = require('./middleware/staging-auth')
-  , concurrency = process.env.WEB_CONCURRENCY
+  , concurrency = process.env.WEB_CONCURRENCY || 1
   ;
 
 var app = express()
@@ -65,6 +65,7 @@ app.use(require('./routes/wards.js'));
 if (cluster.isMaster) {
   for (var i = 0; i < concurrency; i++) {
     cluster.fork();
+    console.log("Fork #"+i)
   }
 
   cluster.on('exit', function(worker, code, signal) {
@@ -72,7 +73,9 @@ if (cluster.isMaster) {
   });
 
 } else {
+  console.log("Create server");
   http.createServer(app).listen(port, function() {
     logger.log({status: 'info', msg: 'server listening', port: port});
   });
 }
+
