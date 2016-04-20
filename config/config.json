@@ -1,13 +1,4 @@
 {
-  "prod": {
-    "db": "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt",
-    "port": 3003,
-    "EMAIL": "noone@nobody.com",
-    "EMAIL_HOST": "localhost",
-    "EMAIL_PORT": 25,
-    "EMAIL_PASSWORD": ""
-  },
-
   "development": {
     "db": "mongodb://localhost/recycling_development",
     "port": 3000,

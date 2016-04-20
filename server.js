@@ -16,11 +16,13 @@ var express = require('express')
   , concurrency = process.env.WEB_CONCURRENCY || 1
   ;
 
+console.log("MongoDB URI: "+process.env.MONGOLAB_URI);
+console.log("Port: "+process.env.PORT);
+
 var app = express()
   // get environment: production, development, test
   , env = app.get('env')
   , config = require('./config/config')[env]
-
   , dbCnx = process.env.MONGOLAB_URI || config.db
   , db = mongoose.connect(dbCnx)
   , port = process.env.PORT || config.port || 3000
