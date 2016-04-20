@@ -1,6 +1,6 @@
 {
-  "name": "recycling-server",
-  "description": "recycling API",
+  "name": "bikewebapp-server",
+  "description": "bikewebapp API",
   "version": "0.0.1",
   "private": "true",
   "scripts": {
