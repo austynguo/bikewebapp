@@ -5,8 +5,9 @@
     "EMAIL": "noone@nobody.com",
     "EMAIL_HOST": "localhost",
     "EMAIL_PORT": 25,
-    "EMAIL_PASSWORD": ""    
-  }
+    "EMAIL_PASSWORD": ""
+  },
+
   "development": {
     "db": "mongodb://localhost/recycling_development",
     "port": 3000,
