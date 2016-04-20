@@ -20,9 +20,9 @@ var app = express()
   , env = app.get('env')
   , config = require('./config/config')[env]
 
-  , dbCnx = process.env.MONGOLAB_URI || config.db
+  , dbCnx = process.env.MONGOLAB_URI
   , db = mongoose.connect(dbCnx)
-  , port = process.env.PORT || config.port || 3000
+  , port = process.env.PORT || 3000
   ;
 
 // memjs reads appropriate env variables by default.
@@ -78,4 +78,3 @@ if (cluster.isMaster) {
     logger.log({status: 'info', msg: 'server listening', port: port});
   });
 }
-
