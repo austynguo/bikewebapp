@@ -28,6 +28,9 @@ var app = express()
   , port = process.env.PORT || config.port || 3000
   ;
 
+dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
+
+
 console.log("env: "+env);
 
 // memjs reads appropriate env variables by default.
