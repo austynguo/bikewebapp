@@ -2,7 +2,8 @@
   WIMR.createMap = function(id) {
     var map = L.map(id, {
       maxZoom: 20
-    }).setView([41.881, -87.629], 11);
+    // }).setView([41.881, -87.629], 11);
+  }).setView([-33.8717, 151.2067], 14); //add QVB Sydney as coordinates, 14 zoom lvl
     var self = this;
     self.locations = {};
     self.pending = [];
@@ -117,7 +118,8 @@
     
     map.wimrReset = function(done) {
       
-      map.setView([41.881, -87.629], 11);
+      // map.setView([41.881, -87.629], 11);
+      map.setView([-33.8717, 151.2067], 14); // QVB latlng
       map.wimrRefreshLocations(function(){
         for (var loc in self.locations) {
           var mkr = self.locations[loc];
