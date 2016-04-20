@@ -23,12 +23,12 @@ var app = express()
   // get environment: production, development, test
   , env = app.get('env')
   , config = require('./config/config')[env]
-  , dbCnx = process.env.MONGOLAB_URI || config.db
+  // , dbCnx = process.env.MONGOLAB_URI || config.db
   , db = mongoose.connect(dbCnx)
   , port = process.env.PORT || config.port || 3000
   ;
 
-dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
+var dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
 
 
 console.log("env: "+env);
