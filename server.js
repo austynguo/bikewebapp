@@ -17,13 +17,16 @@ var express = require('express')
   ;
 
 var app = express()
+  // get environment: production, development, test
   , env = app.get('env')
   , config = require('./config/config')[env]
 
-  , dbCnx = process.env.MONGOLAB_URI
+  , dbCnx = process.env.MONGOLAB_URI || config.db
   , db = mongoose.connect(dbCnx)
-  , port = process.env.PORT || 3000
+  , port = process.env.PORT || config.port || 3000
   ;
+
+console.log("env: "+env);
 
 // memjs reads appropriate env variables by default.
 // zero configuration necessary
@@ -65,7 +68,7 @@ app.use(require('./routes/wards.js'));
 if (cluster.isMaster) {
   for (var i = 0; i < concurrency; i++) {
     cluster.fork();
-    console.log("Fork #"+i)
+    console.log("Fork #"+i);
   }
 
   cluster.on('exit', function(worker, code, signal) {
