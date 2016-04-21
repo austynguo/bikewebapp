@@ -16,24 +16,20 @@ var express = require('express')
   , concurrency = process.env.WEB_CONCURRENCY || 1
   ;
 
+// Log process environment to console
 console.log("process.env: "+process.env);
 console.dir(process.env);
-console.log("MongoDB URI: "+process.env.MONGODB_URI);
-console.log("Port: "+process.env.PORT);
 
 var app = express()
-  // get environment: production, development, test
-  // but where does this get it from?
-  // NODE_ENV is set to 'development' by default, on heroku this is set to production
+  // Get environment variables
+  // NODE_ENV is set to 'development' by default if not specified
+  // On heroku this is set to production
   , env = app.get('env')
   , config = require('./config/config')[env]
   , dbCnx = process.env.MONGODB_URI || config.db
   , db = mongoose.connect(dbCnx)
   , port = process.env.PORT || config.port || 3000
   ;
-
-// var dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
-
 
 console.log("env: "+env);
 
