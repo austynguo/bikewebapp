@@ -16,19 +16,23 @@ var express = require('express')
   , concurrency = process.env.WEB_CONCURRENCY || 1
   ;
 
+console.log("process.env: "+process.env);
+console.dir(process.env);
 console.log("MongoDB URI: "+process.env.MONGOLAB_URI);
 console.log("Port: "+process.env.PORT);
 
 var app = express()
   // get environment: production, development, test
+  // but where does this get it from?
+  // NODE_ENV is set to 'development' by default, on heroku this is set to production
   , env = app.get('env')
   , config = require('./config/config')[env]
-  // , dbCnx = process.env.MONGOLAB_URI || config.db
+  , dbCnx = process.env.MONGOLAB_URI || config.db
   , db = mongoose.connect(dbCnx)
   , port = process.env.PORT || config.port || 3000
   ;
 
-var dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
+// var dbCnx = "mongodb://heroku_1z2bk2bt:tfladjja15dc7a5ibss2a2fuc@ds013991.mlab.com:13991/heroku_1z2bk2bt";
 
 
 console.log("env: "+env);
@@ -46,6 +50,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+// setting environment? -> what is morgan?
 switch (app.get('env')) {
     case 'development':
         app.use(morgan('dev'));
@@ -70,6 +76,7 @@ app.get('/locations/count.json', locations.count);
 app.use(require('./routes/wards.js'));
 
 
+// Detects clusters, forks cluster for each CPU core
 if (cluster.isMaster) {
   for (var i = 0; i < concurrency; i++) {
     cluster.fork();
