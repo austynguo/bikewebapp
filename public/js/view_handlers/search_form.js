@@ -65,7 +65,7 @@
 
           })
           .fail(function (response){
-            var status = "Sorry, either the address was incorrect or doesn't exist in Chicago.";
+            var status = "Sorry, either the address was incorrect or doesn't exist in Sydney.";
             $('#addressField').addClass('has-error');
             $('#status').wimrStatus(status, 'warning');
           });
@@ -76,19 +76,20 @@
   });
 
   function formatAddressRequest(inputAddress) {
-    var city = 'Chicago';
-    var state = 'IL';
+    var city = 'Sydney';
+    var state = 'NSW';
     return encodeURIComponent([inputAddress,city,state].join(','));
   }
 
+  // Filter Google Response based on address.<level> === 'Filter string' 
   function filterGoogleResponse(results) {
     return results.map(function(address) {
-      return WIMR.parseGoogleAddress(address);
+      return WIMR.parseGoogleAddress(address);x
     }).filter(function(address) {
       return address.street_number
         &&  address.route
-        &&  address.city === 'Chicago'
-        &&  address.state === 'Illinois';
+        &&  address.city // === 'Sydney'
+        &&  address.state === 'New South Wales';
     });
   }
 
