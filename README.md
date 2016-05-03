@@ -2,7 +2,6 @@ Cycling Safety Perception
 ===========================
 Crowdsourcing data about cycling infrastructure and perceived safety in Sydney, Australia.
 
-
 Requirements
 ------------
 * [Node.js](http://nodejs.org/)
@@ -26,4 +25,6 @@ Tests
 Run the tests with ```npm test```
 
 
-
+Documentation
+-------------
+More documentation will hopefully be added in the future
