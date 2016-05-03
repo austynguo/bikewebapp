@@ -10,24 +10,17 @@
     
     <p>
       <span class='reported-address'><%= formattedAddress %></span>
-      <strong>does not recycle!</strong>
     </p>
     <p class="form-group report-count">
       <%= reportCount %>
       
       <% if (reportCount > 1) { %>
-        people
+        reports have
       <% } else { %>
-        person
+        report has
       <% } %>
       
-      <% if (reportCount > 1) { %>
-        report
-      <% } else { %>
-        reports
-      <% } %>
-      
-      NO recycling
+      been made for this location
     </p>
   <% } else { %>
     
@@ -52,7 +45,7 @@
   </p>
 
   <% if (comments.length) { %>
-    <h4>Resident Comments</h4>
+    <h4>Comments</h4>
     <% for (var i=0; i<comments.length; i++) { %>
       <% var comment = comments[i]; %>
       <small><%= comment.date %></small>

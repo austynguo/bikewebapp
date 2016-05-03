@@ -186,7 +186,7 @@ a.close-dialog {
 li.next-steps { color: #8cf; margin-bottom:1em; }
 li.next-steps:before {    
     font-family: 'FontAwesome';
-    content: '\f1b8';
+    content: '\f206'; /* unicode for bike using fontawesome */
     margin:0 5px 0 -22px;
 }
 li.next-steps > div.inner {
